@@ -50,6 +50,9 @@ app.use("/api/budget", budgetRoute);
 const categoriesRoute = require("./routes/categories");
 app.use("/api/categories", categoriesRoute);
 
+const expendituresRoute = require("./routes/expenditures");
+app.use("/api/expenditures", expendituresRoute);
+
 const carRoute = require("./routes/cars");
 app.use("/api/cars", carRoute);
 
