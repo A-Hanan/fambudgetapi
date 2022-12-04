@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(400).send("Not found");
+      res.status(200).json([]);
       console.log(err);
     });
 });

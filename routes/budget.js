@@ -6,10 +6,10 @@ var db = require("../db");
 router.post("/getByDate", async (req, res) => {
   //   console.log("req", req.body);
   const { monthlyDate } = req.body;
-//   console.log("running route");
+  //   console.log("running route");
 
   await db
-    .select("budgetAmount", "budgetMonth", "addedBy")
+    .select("id", "budgetAmount", "budgetMonth", "addedBy")
     .from("monthlybudgets")
     .where("budgetMonth", "=", monthlyDate)
     .then((data) => {

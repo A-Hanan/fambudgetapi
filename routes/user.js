@@ -3,6 +3,31 @@ const router = express.Router();
 const bcrypt = require("bcrypt-nodejs");
 var db = require("../db");
 
+router.get("/allRegularUsers", (req, res) => {
+  console.log("running");
+  db.select("id", "email", "name", "usertype")
+    .from("users")
+    .where("usertype", "=", "regularUser")
+    .then((data) => {
+      console.log("all regular users", data);
+      res.status(200).json(data);
+    })
+    .catch((err) => res.status(500).send(err));
+});
+router.post("/deleteUser", (req, res) => {
+  console.log("req", req.body);
+  db.delete()
+    .from("users")
+    .where("id", "=", req.body?.id)
+    .then((res2) => {
+      console.log("response 2", res2);
+      res.status(200).send("successfully deleted");
+    })
+    .catch((e) => {
+      console.log(e);
+      res.status(400).json(e);
+    });
+});
 router.post("/signin", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
